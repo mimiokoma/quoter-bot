@@ -1,8 +1,9 @@
 from aiogram import Router, F
+from aiogram.types import CallbackQuery
 from aiogram.types import Message
 
 from services.ai import generate_text
-from keyboards import main_keyboard
+from keyboards import main_keyboard, again_keyboard
 
 from users import users
 
@@ -11,62 +12,193 @@ router = Router()
 
 @router.message(F.text == "/start")
 async def start(message: Message):
+
     await message.answer(
         "✨ Добро пожаловать в Quoter\n\n"
-        "Я создаю уникальные цитаты и мотивационные сообщения с помощью ИИ.",
+        "Выбери категорию вдохновения:",
         reply_markup=main_keyboard
     )
 
+@router.callback_query(F.data == "menu")
+async def menu(callback: CallbackQuery):
 
-@router.message(F.text == "📜 Цитата")
-async def quote(message: Message):
+    await callback.message.answer(
+        "✨ Главное меню",
+        reply_markup=main_keyboard
+    )
+
+    await callback.answer()
+
+# цитата
+@router.callback_query(F.data == "📜 Цитата")
+async def quote(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
     result = await generate_text(
         "Сгенерируй красивую философскую цитату. До 2 предложений."
     )
-    await message.answer(result)
 
+    await loading.delete()
 
-@router.message(F.text == "💪 Мотивация")
-async def motivation(message: Message):
+    await callback.message.answer(
+        f"📜 Цитата\n\n{result}",
+        reply_markup=again_keyboard("quote")
+    )
+
+    await callback.answer()
+
+#мотивация
+@router.callback_query(F.data == "💪 Мотивация")
+async def motivation(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
     result = await generate_text(
         "Сгенерируй короткое мотивационное сообщение."
     )
-    await message.answer(result)
 
+    await loading.delete()
 
-@router.message(F.text == "🌅 Утро")
-async def morning(message: Message):
-    result = await generate_text(
-        "Напиши доброе вдохновляющее утреннее сообщение."
+    await callback.message.answer(
+        f"💪 Мотивация\n\n{result}",
+        reply_markup=again_keyboard("motivation")
     )
-    await message.answer(result)
 
+    await callback.answer()
 
-@router.message(F.text == "🌙 Вечер")
-async def evening(message: Message):
-    result = await generate_text(
-        "Напиши спокойную вечернюю мудрую мысль."
+#для души
+@router.callback_query(F.data == "❤️ Для души")
+async def soul(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
     )
-    await message.answer(result)
 
-
-@router.message(F.text == "🎯 Для работы")
-async def work(message: Message):
-    result = await generate_text(
-        "Напиши мотивационную мысль для продуктивной работы."
-    )
-    await message.answer(result)
-
-
-@router.message(F.text == "❤️ Для души")
-async def soul(message: Message):
     result = await generate_text(
         "Напиши тёплую жизненную цитату для души."
     )
-    await message.answer(result)
+
+    await loading.delete()
+
+    await callback.message.answer(
+        f"❤️ Для души\n\n{result}",
+        reply_markup=again_keyboard("soul")
+    )
+
+    await callback.answer()
+
+#для работы
+@router.callback_query(F.data == "🎯 Для работы")
+async def work(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
+    result = await generate_text(
+        "Напиши мотивационную мысль для продуктивной работы."
+    )
+
+    await loading.delete()
+
+    await callback.message.answer(
+        f"🎯 Для работы\n\n{result}",
+        reply_markup=again_keyboard("work")
+    )
+
+    await callback.answer()
+
+#утро
+@router.callback_query(F.data == "🌅 Утро")
+async def morning(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
+    result = await generate_text(
+        "Напиши доброе вдохновляющее утреннее сообщение."
+    )
+
+    await loading.delete()
+
+    await callback.message.answer(
+        f"🌅 Утро\n\n{result}",
+        reply_markup=again_keyboard("morning")
+    )
+
+    await callback.answer()
+
+#вечер
+@router.callback_query(F.data == "🌙 Вечер")
+async def evening(callback: CallbackQuery):
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
+    result = await generate_text(
+        "Напиши спокойную вечернюю мудрую мысль."
+    )
+
+    await loading.delete()
+
+    await callback.message.answer(
+        f"🌙 Вечер\n\n{result}",
+        reply_markup=again_keyboard("evening")
+    )
+
+    await callback.answer()
+
+
+
+# @router.message(F.text == "💪 Мотивация")
+# async def motivation(message: CallbackQuery):
+#
+#     result = await generate_text(
+#         "Сгенерируй короткое мотивационное сообщение."
+#     )
+#     await message.answer(result)
+#
+#
+# @router.message(F.text == "🌅 Утро")
+# async def morning(message: CallbackQuery):
+#     result = await generate_text(
+#         "Напиши доброе вдохновляющее утреннее сообщение."
+#     )
+#     await message.answer(result)
+#
+#
+# @router.message(F.text == "🌙 Вечер")
+# async def evening(message: CallbackQuery):
+#     result = await generate_text(
+#         "Напиши спокойную вечернюю мудрую мысль."
+#     )
+#     await message.answer(result)
+#
+#
+# @router.message(F.text == "🎯 Для работы")
+# async def work(message: CallbackQuery):
+#     result = await generate_text(
+#         "Напиши мотивационную мысль для продуктивной работы."
+#     )
+#     await message.answer(result)
+#
+#
+# @router.message(F.text == "❤️ Для души")
+# async def soul(message: CallbackQuery):
+#     result = await generate_text(
+#         "Напиши тёплую жизненную цитату для души."
+#     )
+#     await message.answer(result)
 
 @router.message(F.text == "🔔 Подписаться")
-async def subscribe(message: Message):
+async def subscribe(message: CallbackQuery):
     from database import add_user
 
     add_user(message.from_user.id)
@@ -76,7 +208,7 @@ async def subscribe(message: Message):
     )
 
 @router.message(F.text == "🔕 Отписаться")
-async def unsubscribe(message: Message):
+async def unsubscribe(message: CallbackQuery):
     from database import remove_user
 
     remove_user(message.from_user.id)
