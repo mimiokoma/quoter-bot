@@ -153,7 +153,7 @@ async def evening(callback: CallbackQuery):
     )
 
     await bot.send_message(
-        chat_id="@quoter_test",
+        chat_id="@channel7mimi",
         text="🚀 Тест канала от Quoter"
     )
 
