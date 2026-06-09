@@ -16,16 +16,9 @@ async def main():
 
     dp.include_router(router)
 
-    # scheduler.add_job(
-    #     send_daily_quote,
-    #     "cron",
-    #     hour=9,
-    #     minute=0,
-    #     kwargs={"bot": bot}
-    # )
     scheduler.add_job(
         send_daily_quote,
-        trigger="interval",
+        "cron",
         hour=9,
         minute=0,
         kwargs={"bot": bot}
