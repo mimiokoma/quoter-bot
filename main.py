@@ -16,11 +16,17 @@ async def main():
 
     dp.include_router(router)
 
+    # scheduler.add_job(
+    #     send_daily_quote,
+    #     "cron",
+    #     hour=9,
+    #     minute=0,
+    #     kwargs={"bot": bot}
+    # )
     scheduler.add_job(
         send_daily_quote,
-        "cron",
-        hour=9,
-        minute=0,
+        trigger="interval",
+        minutes=1,
         kwargs={"bot": bot}
     )
 
@@ -28,6 +34,7 @@ async def main():
 
 
     await dp.start_polling(bot)
+
 
 
 if __name__ == "__main__":

@@ -152,21 +152,6 @@ async def evening(callback: CallbackQuery):
         reply_markup=again_keyboard("evening")
     )
 
-    try:
-        await callback.bot.send_message(
-            chat_id="@channel7mimi",
-            text="🚀 Тест канала от Quoter"
-        )
-
-        await callback.message.answer(
-            "Канал найден ✅"
-        )
-
-    except Exception as e:
-        await callback.message.answer(
-            f"Ошибка:\n{e}"
-        )
-
     await callback.answer()
 
 
@@ -229,14 +214,4 @@ async def unsubscribe(message: CallbackQuery):
 
     await message.answer(
         "❌ Ежедневные цитаты отключены."
-    )
-
-@router.message()
-async def debug(message: Message):
-    await message.answer(
-        f"""
-chat_id: {message.chat.id}
-
-text: {message.text}
-"""
     )
