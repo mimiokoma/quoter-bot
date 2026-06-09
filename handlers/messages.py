@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, ReplyKeyboardRemove
 from aiogram.types import Message
 
 from services.ai import generate_text
@@ -15,6 +15,11 @@ async def start(message: Message):
     await message.answer(
         "✨ Добро пожаловать в Quoter\n\n"
         "Выбери категорию вдохновения:",
+        reply_markup=ReplyKeyboardRemove()
+    )
+
+    await message.answer(
+        "👇 Главное меню",
         reply_markup=main_keyboard
     )
 
