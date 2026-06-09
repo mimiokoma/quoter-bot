@@ -26,7 +26,8 @@ async def main():
     scheduler.add_job(
         send_daily_quote,
         trigger="interval",
-        minutes=1,
+        hour=9,
+        minute=0,
         kwargs={"bot": bot}
     )
 
