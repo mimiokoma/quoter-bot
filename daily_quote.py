@@ -1,22 +1,20 @@
-from users import users
+from database import get_users
 from services.ai import generate_text
 
-from database import get_users
-for user_id in get_users():
 
-    async def send_daily_quote(bot):
+async def send_daily_quote(bot):
 
-        quote = await generate_text(
-            "Создай красивую вдохновляющую цитату дня."
-        )
+    quote = await generate_text(
+        "Создай красивую вдохновляющую цитату дня."
+    )
 
-        for user_id in users:
+    for user_id in get_users():
 
-            try:
-                await bot.send_message(
-                    user_id,
-                    f"📜 Цитата дня\n\n{quote}"
-                )
+        try:
+            await bot.send_message(
+                user_id,
+                f"📜 Цитата дня\n\n{quote}"
+            )
 
-            except:
-                pass
+        except Exception as e:
+            print(f"Ошибка отправки пользователю {user_id}: {e}")
