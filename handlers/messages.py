@@ -152,10 +152,20 @@ async def evening(callback: CallbackQuery):
         reply_markup=again_keyboard("evening")
     )
 
-    await bot.send_message(
-        chat_id="@channel7mimi",
-        text="🚀 Тест канала от Quoter"
-    )
+    try:
+        await callback.bot.send_message(
+            chat_id="@channel7mimi",
+            text="🚀 Тест канала от Quoter"
+        )
+
+        await callback.message.answer(
+            "Канал найден ✅"
+        )
+
+    except Exception as e:
+        await callback.message.answer(
+            f"Ошибка:\n{e}"
+        )
 
     await callback.answer()
 
