@@ -30,7 +30,7 @@ async def menu(callback: CallbackQuery):
     await callback.answer()
 
 # цитата
-@router.callback_query(F.data == "📜 Цитата")
+@router.callback_query(F.data == "quote")
 async def quote(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -51,7 +51,7 @@ async def quote(callback: CallbackQuery):
     await callback.answer()
 
 #мотивация
-@router.callback_query(F.data == "💪 Мотивация")
+@router.callback_query(F.data == "motivation")
 async def motivation(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -72,7 +72,7 @@ async def motivation(callback: CallbackQuery):
     await callback.answer()
 
 #для души
-@router.callback_query(F.data == "❤️ Для души")
+@router.callback_query(F.data == "soul")
 async def soul(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -93,7 +93,7 @@ async def soul(callback: CallbackQuery):
     await callback.answer()
 
 #для работы
-@router.callback_query(F.data == "🎯 Для работы")
+@router.callback_query(F.data == "work")
 async def work(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -114,7 +114,7 @@ async def work(callback: CallbackQuery):
     await callback.answer()
 
 #утро
-@router.callback_query(F.data == "🌅 Утро")
+@router.callback_query(F.data == "morning")
 async def morning(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -135,7 +135,7 @@ async def morning(callback: CallbackQuery):
     await callback.answer()
 
 #вечер
-@router.callback_query(F.data == "🌙 Вечер")
+@router.callback_query(F.data == "evening")
 async def evening(callback: CallbackQuery):
 
     loading = await callback.message.answer(
@@ -197,7 +197,7 @@ async def evening(callback: CallbackQuery):
 #     )
 #     await message.answer(result)
 
-@router.message(F.text == "🔔 Подписаться")
+@router.callback_query(F.data == "subscribe")
 async def subscribe(message: CallbackQuery):
     from database import add_user
 
@@ -207,7 +207,7 @@ async def subscribe(message: CallbackQuery):
         "✅ Теперь я буду присылать тебе ежедневную цитату."
     )
 
-@router.message(F.text == "🔕 Отписаться")
+@router.callback_query(F.data == "unsubscribe")
 async def unsubscribe(message: CallbackQuery):
     from database import remove_user
 
