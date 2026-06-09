@@ -9,7 +9,6 @@ from users import users
 
 router = Router()
 
-
 @router.message(F.text == "/start")
 async def start(message: Message):
 
@@ -215,4 +214,14 @@ async def unsubscribe(message: CallbackQuery):
 
     await message.answer(
         "❌ Ежедневные цитаты отключены."
+    )
+
+@router.message()
+async def debug(message: Message):
+    await message.answer(
+        f"""
+chat_id: {message.chat.id}
+
+text: {message.text}
+"""
     )
