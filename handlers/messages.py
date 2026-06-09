@@ -152,6 +152,11 @@ async def evening(callback: CallbackQuery):
         reply_markup=again_keyboard("evening")
     )
 
+    await bot.send_message(
+        chat_id="@quoter_test",
+        text="🚀 Тест канала от Quoter"
+    )
+
     await callback.answer()
 
 
