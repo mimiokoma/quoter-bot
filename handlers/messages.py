@@ -7,6 +7,8 @@ from keyboards import main_keyboard, again_keyboard
 
 from users import users
 
+from database import check_limit
+
 router = Router()
 
 @router.message(F.text == "/start")
@@ -37,6 +39,13 @@ async def menu(callback: CallbackQuery):
 @router.callback_query(F.data == "quote")
 async def quote(callback: CallbackQuery):
 
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
+        return
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
     )
@@ -57,6 +66,14 @@ async def quote(callback: CallbackQuery):
 #мотивация
 @router.callback_query(F.data == "motivation")
 async def motivation(callback: CallbackQuery):
+
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
+        return
 
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
@@ -79,6 +96,12 @@ async def motivation(callback: CallbackQuery):
 @router.callback_query(F.data == "soul")
 async def soul(callback: CallbackQuery):
 
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
     )
@@ -99,6 +122,12 @@ async def soul(callback: CallbackQuery):
 #для работы
 @router.callback_query(F.data == "work")
 async def work(callback: CallbackQuery):
+
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
 
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
@@ -121,6 +150,12 @@ async def work(callback: CallbackQuery):
 @router.callback_query(F.data == "morning")
 async def morning(callback: CallbackQuery):
 
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
     )
@@ -141,6 +176,12 @@ async def morning(callback: CallbackQuery):
 #вечер
 @router.callback_query(F.data == "evening")
 async def evening(callback: CallbackQuery):
+
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
 
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
