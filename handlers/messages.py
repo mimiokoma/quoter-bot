@@ -9,6 +9,9 @@ from users import users
 
 from database import check_limit
 
+import random
+from aiogram.types import FSInputFile
+
 router = Router()
 
 @router.message(F.text == "/start")
@@ -56,8 +59,18 @@ async def quote(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"📜 Цитата\n\n{result}",
+    images = [
+        "images/1.jpg",
+        "images/4.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"📜 Цитата\n\n{result}",
         reply_markup=again_keyboard("quote")
     )
 
@@ -85,8 +98,17 @@ async def motivation(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"💪 Мотивация\n\n{result}",
+    images = [
+        "images/6.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"💪 Мотивация\n\n{result}",
         reply_markup=again_keyboard("motivation")
     )
 
@@ -112,8 +134,17 @@ async def soul(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"❤️ Для души\n\n{result}",
+    images = [
+        "images/3.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"❤️ Для души\n\n{result}",
         reply_markup=again_keyboard("soul")
     )
 
@@ -139,8 +170,17 @@ async def work(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"🎯 Для работы\n\n{result}",
+    images = [
+        "images/3.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"🎯 Для работы\n\n{result}",
         reply_markup=again_keyboard("work")
     )
 
@@ -166,8 +206,17 @@ async def morning(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"🌅 Утро\n\n{result}",
+    images = [
+        "images/2.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"🌅 Утро\n\n{result}",
         reply_markup=again_keyboard("morning")
     )
 
@@ -193,8 +242,17 @@ async def evening(callback: CallbackQuery):
 
     await loading.delete()
 
-    await callback.message.answer(
-        f"🌙 Вечер\n\n{result}",
+    images = [
+        "images/5.jpg",
+    ]
+
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
+        caption=f"🌙 Вечер\n\n{result}",
         reply_markup=again_keyboard("evening")
     )
 
