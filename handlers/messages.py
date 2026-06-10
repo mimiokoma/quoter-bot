@@ -42,13 +42,13 @@ async def menu(callback: CallbackQuery):
 @router.callback_query(F.data == "quote")
 async def quote(callback: CallbackQuery):
 
-    if not check_limit(callback.from_user.id):
-        await callback.message.answer(
-            "⛔ Сегодня лимит исчерпан.\n\n"
-            "Доступно 3 генерации в сутки."
-        )
-
-        return
+    # if not check_limit(callback.from_user.id):
+    #     await callback.message.answer(
+    #         "⛔ Сегодня лимит исчерпан.\n\n"
+    #         "Доступно 3 генерации в сутки."
+    #     )
+    #
+    #     return
     loading = await callback.message.answer(
         "⏳ Подбираю вдохновение..."
     )
