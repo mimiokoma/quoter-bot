@@ -1,5 +1,6 @@
 from database import get_users
 from services.ai import generate_text
+from keyboards import main_keyboard
 
 CHANNEL_ID = "@channel7mimi"
 
@@ -7,16 +8,15 @@ CHANNEL_ID = "@channel7mimi"
 async def send_daily_quote(bot):
 
     quote = await generate_text(
-        "Создай красивую вдохновляющую цитату дня."
+        "Создай красивую вдохновляющую фразу."
     )
 
     # канал
     try:
         await bot.send_message(
             chat_id=CHANNEL_ID,
-            text=f"📜 Цитата дня\n\n{quote}"
+            text=f"Вам послание!\n\n{quote}"
         )
-        print("Цитата отправлена в канал")
     except Exception as e:
         print(f"Ошибка канала: {e}")
 
@@ -26,7 +26,8 @@ async def send_daily_quote(bot):
         try:
             await bot.send_message(
                 user_id,
-                f"📜 Цитата дня\n\n{quote}"
+                "✨ Твоё ежедневное вдохновение ждёт.\n\nВыбери настроение:",
+                reply_markup=main_keyboard
             )
 
         except Exception as e:
