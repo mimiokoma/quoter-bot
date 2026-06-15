@@ -15,7 +15,7 @@ async def send_daily_quote(bot):
     try:
         await bot.send_message(
             chat_id=CHANNEL_ID,
-            text=f"Вам послание!\n\n{quote}"
+            text=f"Вам послание 💫\n\n{quote}"
         )
     except Exception as e:
         print(f"Ошибка канала: {e}")
