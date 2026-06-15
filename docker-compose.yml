@@ -1,0 +1,7 @@
+services:
+  quoter:
+    build: .
+    container_name: quoter
+    restart: always
+    env_file:
+      - .env
