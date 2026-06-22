@@ -8,7 +8,7 @@ CHANNEL_ID = "@channel7mimi"
 async def send_daily_quote(bot):
 
     quote = await generate_text(
-        "Создай красивую вдохновляющую фразу."
+        "Создай красивую вдохновляющую фразу, которая подарит силы в новом дне. Пиши уникальную, цепляющую до глубины души фразу."
     )
 
     # канал
@@ -22,7 +22,7 @@ async def send_daily_quote(bot):
 
     # пользователи
     for user_id in get_users():
-
+        print(get_users())
         try:
             await bot.send_message(
                 user_id,
