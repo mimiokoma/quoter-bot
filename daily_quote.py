@@ -1,14 +1,15 @@
 from database import get_users
 from services.ai import generate_text
 from keyboards import main_keyboard
-from promt import PROMT
+from promt import CATEGORY_PROMPTS
 
 CHANNEL_ID = "@channel7mimi"
 
 
 async def send_daily_quote(bot):
-
-    quote = await generate_text( PROMT )
+    quote = await generate_text(
+        CATEGORY_PROMPTS["quote"]
+    )
 
     # канал
     try:

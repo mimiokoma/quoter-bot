@@ -12,15 +12,7 @@ from database import check_limit
 import random
 from aiogram.types import FSInputFile
 
-from promt import (
-    PROMT,
-    Q_PROMT,
-    M_PROMT,
-    U_PROMT,
-    V_PROMT,
-    R_PROMT,
-    D_PROMT
-)
+from promt import CATEGORY_PROMPTS
 
 router = Router()
 
@@ -64,7 +56,7 @@ async def quote(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        Q_PROMT
+        CATEGORY_PROMPTS["quote"]
     )
 
     await loading.delete()
@@ -103,7 +95,7 @@ async def motivation(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        M_PROMT
+        CATEGORY_PROMPTS["motivation"]
     )
 
     await loading.delete()
@@ -139,7 +131,7 @@ async def soul(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        D_PROMT
+        CATEGORY_PROMPTS["soul"]
     )
 
     await loading.delete()
@@ -175,7 +167,7 @@ async def work(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        R_PROMT
+        CATEGORY_PROMPTS["work"]
     )
 
     await loading.delete()
@@ -211,7 +203,7 @@ async def morning(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        U_PROMT
+        CATEGORY_PROMPTS["morning"]
     )
 
     await loading.delete()
@@ -247,7 +239,7 @@ async def evening(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        V_PROMT
+        CATEGORY_PROMPTS["evening"]
     )
 
     await loading.delete()
