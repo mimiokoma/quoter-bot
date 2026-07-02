@@ -12,6 +12,16 @@ from database import check_limit
 import random
 from aiogram.types import FSInputFile
 
+from promt import (
+    PROMT,
+    Q_PROMT,
+    M_PROMT,
+    U_PROMT,
+    V_PROMT,
+    R_PROMT,
+    D_PROMT
+)
+
 router = Router()
 
 @router.message(F.text == "/start")
@@ -54,7 +64,7 @@ async def quote(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Сгенерируй красивую философскую цитату. До 2 предложений."
+        Q_PROMT
     )
 
     await loading.delete()
@@ -93,7 +103,7 @@ async def motivation(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Сгенерируй короткое мотивационное сообщение."
+        M_PROMT
     )
 
     await loading.delete()
@@ -129,7 +139,7 @@ async def soul(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Напиши тёплую жизненную цитату для души."
+        D_PROMT
     )
 
     await loading.delete()
@@ -165,7 +175,7 @@ async def work(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Напиши мотивационную мысль для продуктивной работы."
+        R_PROMT
     )
 
     await loading.delete()
@@ -201,7 +211,7 @@ async def morning(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Напиши доброе вдохновляющее утреннее сообщение."
+        U_PROMT
     )
 
     await loading.delete()
@@ -237,7 +247,7 @@ async def evening(callback: CallbackQuery):
     )
 
     result = await generate_text(
-        "Напиши спокойную вечернюю мудрую мысль."
+        V_PROMT
     )
 
     await loading.delete()
