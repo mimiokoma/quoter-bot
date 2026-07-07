@@ -8,7 +8,7 @@ CHANNEL_ID = "@channel7mimi"
 
 async def send_daily_quote(bot):
     quote = await generate_text(
-        CATEGORY_PROMPTS["quote"]
+        CATEGORY_PROMPTS["motivation"] | CATEGORY_PROMPTS["soul"] | CATEGORY_PROMPTS["morning"]
     )
 
     # канал
