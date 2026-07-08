@@ -2,14 +2,20 @@ from database import get_users
 from services.ai import generate_text
 from keyboards import main_keyboard
 from promt import CATEGORY_PROMPTS
+import random
 
 CHANNEL_ID = "@channel7mimi"
 
+prompt = random.choice([
+    CATEGORY_PROMPTS["motivation"],
+    CATEGORY_PROMPTS["soul"],
+    CATEGORY_PROMPTS["morning"]
+])
+
+
 
 async def send_daily_quote(bot):
-    quote = await generate_text(
-        CATEGORY_PROMPTS["motivation"] | CATEGORY_PROMPTS["soul"] | CATEGORY_PROMPTS["morning"]
-    )
+    quote = await generate_text(prompt)
 
     # канал
     try:
