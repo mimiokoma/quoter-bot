@@ -7,7 +7,6 @@ import random
 CHANNEL_ID = "@channel7mimi"
 
 prompt = random.choice([
-    CATEGORY_PROMPTS["motivation"],
     CATEGORY_PROMPTS["soul"],
     CATEGORY_PROMPTS["morning"]
 ])
