@@ -152,6 +152,62 @@ async def soul(callback: CallbackQuery):
 
     await callback.answer()
 
+#подруга
+@router.callback_query(F.data == "girl")
+async def girl(callback: CallbackQuery):
+
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
+    result = await generate_text(
+        CATEGORY_PROMPTS["girl"]
+    )
+
+    await loading.delete()
+
+
+    await callback.message.answer_photo(
+        caption=f"С любовью, твоя подруга\n\n{result}",
+        reply_markup=again_keyboard("girl")
+    )
+
+    await callback.answer()
+
+#мужик
+@router.callback_query(F.data == "man")
+async def man(callback: CallbackQuery):
+
+    if not check_limit(callback.from_user.id):
+        await callback.message.answer(
+            "⛔ Сегодня лимит исчерпан.\n\n"
+            "Доступно 3 генерации в сутки."
+        )
+
+    loading = await callback.message.answer(
+        "⏳ Подбираю вдохновение..."
+    )
+
+    result = await generate_text(
+        CATEGORY_PROMPTS["man"]
+    )
+
+    await loading.delete()
+
+
+    await callback.message.answer_photo(
+        caption=f"С любовью, твой мужчина\n\n{result}",
+        reply_markup=again_keyboard("man")
+    )
+
+    await callback.answer()
+
 #для работы
 @router.callback_query(F.data == "work")
 async def work(callback: CallbackQuery):

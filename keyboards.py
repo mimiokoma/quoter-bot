@@ -55,6 +55,16 @@ main_keyboard = InlineKeyboardMarkup(
                 callback_data="soul"
             )
         ],
+[
+            InlineKeyboardButton(
+                text="👨 Мужские грёзы",
+                callback_data="man"
+            ),
+            InlineKeyboardButton(
+                text="👩 Совет подружки",
+                callback_data="girl"
+            )
+        ],
         [
             InlineKeyboardButton(
                 text="🔔 Подписаться",

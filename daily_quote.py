@@ -8,7 +8,8 @@ CHANNEL_ID = "@channel7mimi"
 
 prompt = random.choice([
     CATEGORY_PROMPTS["soul"],
-    CATEGORY_PROMPTS["morning"]
+    CATEGORY_PROMPTS["girl"],
+    CATEGORY_PROMPTS["man"]
 ])
 
 
