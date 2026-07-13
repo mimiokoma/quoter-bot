@@ -172,8 +172,16 @@ async def girl(callback: CallbackQuery):
 
     await loading.delete()
 
+    images = [
+        "images/3.jpg",
+    ]
 
-    await callback.message.answer(
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
         caption=f"👩 Совет подружки\n\n{result}",
         reply_markup=again_keyboard("girl")
     )
@@ -200,10 +208,18 @@ async def man(callback: CallbackQuery):
 
     await loading.delete()
 
+    images = [
+        "images/3.jpg",
+    ]
 
-    await callback.message.answer(
+    photo = FSInputFile(
+        random.choice(images)
+    )
+
+    await callback.message.answer_photo(
+        photo=photo,
         caption=f"👨 Мужские грёзы\n\n{result}",
-        reply_markup=again_keyboard("man")
+        reply_markup=again_keyboard("girl")
     )
 
     await callback.answer()
