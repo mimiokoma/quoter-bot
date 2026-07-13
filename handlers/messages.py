@@ -173,7 +173,7 @@ async def girl(callback: CallbackQuery):
     await loading.delete()
 
     images = [
-        "images/3.jpg",
+        "images/9.jpg",
     ]
 
     photo = FSInputFile(
@@ -209,7 +209,7 @@ async def man(callback: CallbackQuery):
     await loading.delete()
 
     images = [
-        "images/3.jpg",
+        "images/8.jpg",
     ]
 
     photo = FSInputFile(
@@ -219,7 +219,7 @@ async def man(callback: CallbackQuery):
     await callback.message.answer_photo(
         photo=photo,
         caption=f"👨 Мужские грёзы\n\n{result}",
-        reply_markup=again_keyboard("girl")
+        reply_markup=again_keyboard("man")
     )
 
     await callback.answer()
