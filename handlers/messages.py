@@ -173,8 +173,8 @@ async def girl(callback: CallbackQuery):
     await loading.delete()
 
 
-    await callback.message.answer_photo(
-        caption=f"С любовью, твоя подруга\n\n{result}",
+    await callback.message.answer(
+        caption=f"👩 Совет подружки\n\n{result}",
         reply_markup=again_keyboard("girl")
     )
 
@@ -201,8 +201,8 @@ async def man(callback: CallbackQuery):
     await loading.delete()
 
 
-    await callback.message.answer_photo(
-        caption=f"С любовью, твой мужчина\n\n{result}",
+    await callback.message.answer(
+        caption=f"👨 Мужские грёзы\n\n{result}",
         reply_markup=again_keyboard("man")
     )
 
