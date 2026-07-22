@@ -173,7 +173,7 @@ async def girl(callback: CallbackQuery):
     await loading.delete()
 
     images = [
-        "images/9.jpg",
+        "images/9.jpeg",
     ]
 
     photo = FSInputFile(
